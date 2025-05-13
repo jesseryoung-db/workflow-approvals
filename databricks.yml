@@ -1,0 +1,26 @@
+bundle:
+  name: workflow-approvals
+
+include:
+  - ./resources/*.yml
+
+variables:
+  approvals_table_name:
+    type: string
+    description: "Full path to the approvals table"
+    default: "<your approval table path>"
+  allowed_approvers:
+    type: string
+    description: "Semicolon-separated list of approver emails"
+    default: "<your approver emails>"
+  sql_warehouse_id:
+    type: string
+    description: "ID of the SQL warehouse to use"
+    default: "<your sql warehouse id>"
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: <your-databricks-workspace>

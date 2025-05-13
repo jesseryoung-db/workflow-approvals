@@ -1,0 +1,14 @@
+resources:
+  apps:
+    workflow_approvals:
+      name: workflow-approvals
+      source_code_path: ../src/app
+      resources:
+        - name: sql-warehouse
+          sql_warehouse:
+            id: ${var.sql_warehouse_id}
+            permission: CAN_USE
+        - name: post_approval_workflow
+          job:
+            id: ${resources.jobs.workflow_2.id}
+            permission: CAN_MANAGE_RUN

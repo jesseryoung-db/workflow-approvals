@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body text-center">
+        <h5 class="card-title text-success">
+            <i class="fas fa-check-circle"></i> Approved
+        </h5>
+        <p class="card-text">
+            The request to run <strong>{{ target_job_name }}</strong>
+            (requested from <strong>{{ source_job_name }}</strong>)
+            was <span class="text-success font-weight-bold">approved</span> on <strong>{{ approved_at }}</strong>
+            by <strong>{{ approved_by }}</strong>. <br />
+            <a href="{{ target_job_run_url }}" class="btn btn-primary mt-3">View Job Run</a>
+        </p>
+
+    </div>
+</div>
+<!-- Optional: Font Awesome for check icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}

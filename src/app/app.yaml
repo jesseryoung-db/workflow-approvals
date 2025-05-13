@@ -1,0 +1,11 @@
+command:
+  - gunicorn
+  - app:app
+  - -w
+  - 4
+
+env:
+  - name: "SQL_WAREHOUSE_ID"
+    valueFrom: "sql-warehouse"
+  - name: "APPROVALS_TABLE_NAME"
+    value: "<your approval table path>"

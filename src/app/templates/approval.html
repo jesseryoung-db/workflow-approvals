@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h5 class="card-title">Approval Request</h5>
+        <p class="card-text">
+            <strong>Requesting approval to run:</strong><a href="{{ target_job_url }}">{{ target_job_name }}</a><br>
+            <strong>Requested from:</strong> <a href="{{ source_job_run_url}}">{{ source_job_name }}</a><br>
+            <strong>Requested at:</strong> {{ requested_at }}
+        </p>
+        <form method="post" onsubmit="disableButton()">
+            <button type="submit" class="btn btn-success btn-lg" id="approveButton">Approve</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function disableButton() {
+        // Disable button and change text
+        const btn = document.getElementById('approveButton');
+        btn.disabled = true;
+        btn.innerHTML = 'Approving...';
+
+        // Optional: Add spinner (requires Font Awesome)
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Approving...';
+    }
+</script>
+
+<!-- Optional: Add this if using the spinner -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}

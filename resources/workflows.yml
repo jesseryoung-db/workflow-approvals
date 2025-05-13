@@ -1,0 +1,34 @@
+resources:
+  jobs:
+    approvals_init:
+      name: Approvals - Initialize
+      tasks:
+        - task_key: initialize_schema
+          notebook_task:
+            notebook_path: ../src/notebooks/approvals_init.ipynb
+            base_parameters:
+              approvals_table_name: ${var.approvals_table_name}
+
+    workflow_1:
+      name: Approvals - Initial Workflow
+      tasks:
+        - task_key: some_task
+          notebook_task:
+            notebook_path: ../src/notebooks/some_job_task.ipynb
+        - task_key: send_approval
+          notebook_task:
+            notebook_path: ../src/notebooks/send_approval.ipynb
+            base_parameters:
+              approvals_table_name: ${var.approvals_table_name}
+              source_job_run_id: "{{job.run_id}}"
+              target_job_id: ${resources.jobs.workflow_2.id}
+              allowed_approvers: ${var.allowed_approvers}
+              approval_app_base_url: ${resources.apps.workflow_approvals.url}
+          depends_on:
+            - task_key: some_task
+    workflow_2:
+      name: Approvals - Post Approved Workflow
+      tasks:
+        - task_key: some_task
+          notebook_task:
+            notebook_path: ../src/notebooks/some_job_task.ipynb
