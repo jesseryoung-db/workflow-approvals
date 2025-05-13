@@ -11,8 +11,8 @@ This project provides a simple Databricks app that shows how you might add a "Ma
 ### Setting Up the Dev Container
 1. Clone the repository:
     ```bash
-    git clone <repository-url>
-    cd <repository-name>
+    git clone https://github.com/jesseryoung-db/workflow-approvals.git
+    cd workflow-approvals
     ```
 2. Open the project in VS Code.
 3. Reopen the folder in the dev container:
