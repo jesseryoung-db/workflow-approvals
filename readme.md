@@ -42,5 +42,14 @@ Follow the [Databricks documentation](https://docs.databricks.com/aws/en/dev-too
 You should now see 3 workflows (`[dev <your username>] Approvals - Initialize`, `[dev <your username>] Approvals - Initial Workflow` and `[dev <your username>] Approvals - Post Approved Workflow`) as well as a Databricks App (`workflow-approvals`) in your workspace.
 
 ## Usage
-### Create the approvals table and start 
-After the app is deployed, manually run the `[dev <your username>] Approvals - Initialize` workflow to create the approvals table with the approriate schema.
+### Create the approvals table and start the initial workflow
+After the app is deployed, manually run the `[dev <your username>] Approvals - Initialize` workflow to create the approvals table with the approriate schema.  
+After the approvals table is created, go ahead and run the `[dev <your username>] Approvals - Initial Workflow` to simulate a job that requires an approval.
+
+### Approve the next workflow
+After the `[dev <your username>] Approvals - Initial Workflow` completes, navigate to the `send_approval` task in the latest run of the workflow. At the bottom of the notebook, in a cell output there should be the following:
+```
+Approval request created with ID: <some unique id>
+Approval request URL: https://<url to your databricks-app>/approvals/<some unique id>
+```
+Click on the Approval request URL to navigate to the Databricks App. Once you hit the "Approve" button the page should reload to show you that the approval was succesful. Clicking the "View Job Run" should bring you to the workflow that was kicked off as part of the Approval.

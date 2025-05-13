@@ -19,9 +19,10 @@ resources:
           notebook_task:
             notebook_path: ../src/notebooks/send_approval.ipynb
             base_parameters:
+              # Parameters here control the approval process.
               approvals_table_name: ${var.approvals_table_name}
               source_job_run_id: "{{job.run_id}}"
-              target_job_id: ${resources.jobs.workflow_2.id}
+              target_job_id: ${resources.jobs.workflow_2.id} ## Update this to the job ID of the workflow you want to run after approval
               allowed_approvers: ${var.allowed_approvers}
               approval_app_base_url: ${resources.apps.workflow_approvals.url}
           depends_on:
